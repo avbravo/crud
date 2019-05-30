@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib">
+    <h:head> 
+        <title>#{msg['application.title']}</title>
+        <meta name="author" content="Aristides Villarreal"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+        </style>
+        <f:facet name="first">
+            <f:view locale="#{jmoordbLanguajes.locale}"></f:view>
+            <f:loadBundle basename="com.properties.messages" var="msg" />
+            <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
+
+        </f:facet>
+    </h:head>
+    <h:body style="padding-top: 60px; background-color: lightslategray">
+
+        <b:container fluid="true"> 
+            <h:form styleClass="form-signin" prependId="false" id="form">
+                <p:messages id="growl" closable="true"  />
+                <h2 class="form-signin-heading"><p:outputLabel value="#{msg['application.title']}" style="color: white"/></h2>
+                
+                <jmoordbjsf:login
+                   
+                    id="username"
+                    fieldusername="#{loginController.username}"
+                    labelusername="#{app['login.username']}"
+                    fieldpassword="#{loginController.password}"
+                    dologin="#{loginController.doLogin()}"
+                    
+                    showone="true"
+                    idone="rol"
+                  
+                    requiredMessageone="#{msg['field.idrol']}"                    
+                    selectItemsLabelone="#{item.idrol}"
+                    selectItemsValueone="#{loginController.rolServices.rolList}"
+                    valueone="#{loginController.rol}"
+                    />
+                
+                
+                
+
+
+
+                <p:outputLabel value="#{msg['application.version']}" style="color: white"/>
+               
+
+            </h:form>
+        </b:container>
+    </h:body>
+</html>

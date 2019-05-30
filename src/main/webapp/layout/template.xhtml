@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+ 
+      xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib">
+    <h:head>
+        <f:facet name="first">
+            <f:view locale="#{jmoordbLanguages.locale}"></f:view>
+            <f:loadBundle basename="com.properties.messages" var="msg" />
+            <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
+
+        </f:facet>
+        <title>#{msg['application.shorttitle']}</title>
+        <meta name="author" content="Aristides Villarreal" />
+        <meta name="description" content="My web application" />
+        <meta name="KEYWORDS" content="jsf,jmoordb, jmooordbjsf, bootfaces,primefaces" />
+        <meta name="robots" content="index, follow" />
+
+     
+        <jmoordbjsf:metatemplate/>
+        <jmoordbjsf:csstemplate/>
+        <style>.tooltip-inner {
+                max-width: 350px;
+                /* If max-width does not work, try using width instead */
+                width: 350px; 
+            }</style>
+    </h:head>
+    <h:body style="padding-top: 85px;padding-bottom: 85px;" >
+
+        <jmoordbjsf:jstemplate/>
+       
+        <ui:insert name="nbtop">
+            <ui:include src="/layout/top.xhtml"/>
+        </ui:insert>
+
+        <b:container >
+            <ui:insert name="content"/>
+        </b:container>
+
+        <ui:insert name="nbtop">
+            <ui:include src="/layout/footer.xhtml"/>
+        </ui:insert>
+
+    </h:body>
+</html>
