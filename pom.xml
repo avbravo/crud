@@ -129,7 +129,7 @@
                         </option>
                         <option>
                             <key>--deploy</key>
-                            <value>${project.build.directory}/${project.build.finalName}</value>
+                            <value>${project.build.directory}/${project.build.finalName}:${project.build.finalName}</value>
                         </option>
                     </commandLineOptions>
                 </configuration>

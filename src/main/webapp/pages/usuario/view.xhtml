@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="/layout/template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:e="http://xmlns.jcp.org/jsf/composite/extensions"
+                xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib">
+    <ui:define name="content">
+        <!--<h:outputStylesheet library="bsf" name="css/thumbnails.css"/>-->
+
+        <style>
+            .thumbnail { max-width: 100%; }
+            img.thumbnail:hover, img.thumbnail:focus {
+                border: 1px solid;
+                border-color: #428BCA;
+            }
+        </style>
+
+        <b:form id="form"  prependId="false"  rendered="#{p:ifGranted('ADMINISTRADOR')}" onkeypress="if (event.keyCode == 13) {
+                    return false;
+                }">
+            <h:panelGroup id="content" layout="block"> 
+
+                <jmoordbjsf:messages id="msg"/>
+                <b:panel title="#{msg['titleview.usuario']}"  look="primary">
+                    <b:panelGrid id="panel" colSpans="2,10" size="xs" rendered="#{usuarioController.writable}"> 
+                        <p:outputLabel  value="#{msg['field.username']}" />
+                        <p:outputLabel  value="#{usuarioController.usuario.username}" id="username"   />
+
+
+                        <p:outputLabel  value="#{msg['field.nombre']}" />
+                        <jmoordbjsf:inputText value="#{usuarioController.usuario.nombre}" id="nombre"  label="#{msg['field.nombre']}" />
+
+                        <p:outputLabel  value="#{msg['field.cedula']}" />
+                        <jmoordbjsf:inputText value="#{usuarioController.usuario.cedula}" id="cedula" span="4" label="#{msg['field.cedula']}" />
+
+                        <p:outputLabel  value="#{msg['field.celular']}" />
+                        <jmoordbjsf:inputText value="#{usuarioController.usuario.celular}" id="celular" span="4" label="#{msg['field.celular']}" />
+
+
+
+                        <p:outputLabel  value="#{msg['field.email']}" />
+                        <jmoordbjsf:email value="#{usuarioController.usuario.email}" id="email"  label="#{msg['field.email']}" />
+
+
+
+                        <p:outputLabel  value="#{msg['field.cargo']}" />
+                        <jmoordbjsf:inputText value="#{usuarioController.usuario.cargo}" id="cargo"  label="#{msg['field.cargo']}" />
+
+
+                        <p:outputLabel  value="#{msg['field.unidad']}" />
+                        <jmoordbjsf:autocomplete converter="#{unidadConverter}"
+                                                 completeMethod="#{usuarioController.unidadServices.complete}" 
+                                                 labeltip1="#{msg['field.unidad']} #{p.idunidad}"  
+                                                 listener="#{usuarioController.handleSelect}"
+                                                 value="#{usuarioController.usuario.unidad}"
+                                                 itemLabel="#{p.idunidad}"
+                                                 dropdown="true"
+                                                 required="true"
+                                                 minQueryLength="0"
+                                                 field="idunidad"
+                                                 />
+
+
+                        <p:outputLabel  value="#{msg['field.rol']}" />
+
+
+                        <jmoordbjsf:autocomplete converter="#{rolConverter}"
+                                                 completeMethod="#{usuarioController.completeFiltrado}"
+                                                 labeltip1="#{msg['field.idrol']} #{p.idrol}"
+                                                 labeltip2="#{msg['field.rol']} #{p.rol}"   
+                                                 listener="#{usuarioController.handleSelect}"
+                                                 value="#{usuarioController.rolList}"
+                                                 itemLabel="#{p.idrol}"
+
+                                                 multiple="true"
+                                                 required="true"
+                                                 minQueryLength="0"
+                                                 field="idrol"
+                                                 dropdown="true"
+                                                 />
+
+
+
+
+                        <p:outputLabel  value="#{msg['field.activo']}" />
+                        <jmoordbjsf:yesno value="#{usuarioController.usuario.activo}" id="activo"  required="true"/>
+
+
+
+                    </b:panelGrid>
+                  
+                    
+                    
+                      <jmoordbjsf:toolbarview 
+                        renderedDelete="#{p:ifGranted('ADMINISTRADOR')}"
+                        renderedEdit="#{p:ifGranted('ADMINISTRADOR')}"
+                        renderedList="#{p:ifGranted('ADMINISTRADOR')}"                    
+                        controller="#{usuarioController}"
+                        url  = "/pages/usuario/list.xhtml"
+                        />
+                </b:panel>
+            </h:panelGroup>
+        </b:form>
+        <jmoordbjsf:denegado renderedcondition="#{!p:ifGranted('ADMINISTRADOR')}" />
+        <br/><br/><br/>
+    </ui:define>
+</ui:composition>

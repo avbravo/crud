@@ -29,6 +29,7 @@ import com.crudejb.services.RolServices;
 import com.crudejb.services.UsuarioServices;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -139,7 +140,7 @@ public class LoginController implements Serializable, SecurityInterface {
         //Configuracion de la base de datos
         JmoordbConnection jmc = new JmoordbConnection.Builder()
                 .withSecurity(false)
-                .withDatabase("transporte")
+                .withDatabase("crud")
                 .withHost("")
                 .withPort(0)
                 .withUsername("")
@@ -169,6 +170,11 @@ public class LoginController implements Serializable, SecurityInterface {
 // <editor-fold defaultstate="collapsed" desc="doLogin">
     public String doLogin() {
         try {
+            
+            List<Usuario> u = usuarioRepository.findAll();
+            for(Usuario u1:u){
+                System.out.println("---> "+u1.getUsername() + "" +u1.getPassword());
+            }
 
             tokenwassend = false;
             userwasLoged = false;
@@ -240,15 +246,7 @@ public class LoginController implements Serializable, SecurityInterface {
                     loggedIn = true;
                     JsfUtil.successMessage(rf.getAppMessage("login.welcome") + " " + usuario.getNombre());
 
-                    switch (rol.getIdrol()) {
-                        case "DOCENTE":
-                            return "/faces/pages/solicituddocente/new.xhtml?faces-redirect=true";
-                        case "ADMINISTRATIVO":
-                            return "/faces/pages/solicituddocente/list.xhtml?faces-redirect=true";
-                        case "ADMINISTRADOR":
-                            return "/faces/pages/index.xhtml?faces-redirect=true";
-                    }
-
+  return "/faces/pages/index.xhtml?faces-redirect=true";
                 case NOT_DONE:
             }
 

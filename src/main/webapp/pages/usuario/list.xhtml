@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="/layout/template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib"
+                xmlns:e="http://xmlns.jcp.org/jsf/composite/extensions"
+                xmlns:c="http://xmlns.jcp.org/jsf">
+    <ui:define name="content">
+        <!--<h:outputStylesheet library="bsf" name="css/thumbnails.css"/>-->
+
+        <style>
+            .thumbnail { max-width: 100%; }
+            img.thumbnail:hover, img.thumbnail:focus {
+                border: 1px solid;
+                border-color: #428BCA;
+            }
+        </style>
+
+        <b:form id="form"  prependId="false"  rendered="#{loginController.loggedIn and applicationMenu.usuario.list}" onkeypress="if (event.keyCode == 13) {
+                    return false;
+                }">
+
+            <b:growl  id="msgs"/>
+
+            <b:panel title="#{msg['titlelist.usuario']}" id="content"   look="primary" > 
+                <!--<b:panelGrid colSpans="2,10" size="xs">--> 
+                <b:panelGrid colSpans="1,4,1,6"  columns="4" size="xs"> 
+
+
+
+                    <p:outputLabel value="#{msg['field.username']}"/>
+                    <jmoordbjsf:autocomplete converter="#{usuarioConverter}"
+                                             completeMethod="#{usuarioController.usuarioServices.complete}"
+                                             labeltip1="#{msg['field.username']} #{p.username}"
+                                             labeltip2="#{msg['field.nombre']} #{p.nombre}"   
+                                             listener="#{usuarioController.handleAutocompleteOfListXhtml}"
+                                             value="#{usuarioController.usuarioSearch}"
+                                             itemLabel=" #{p.username}"
+                                             field="username"
+                                             update=" :form:dataTable"/>
+
+                    <p:outputLabel value="#{msg['field.nombre']}"/>
+                    <jmoordbjsf:autocomplete converter="#{usuarioConverter}"
+                                             completeMethod="#{usuarioController.usuarioServices.complete}"
+                                             labeltip1="#{msg['field.username']} #{p.username}"
+                                             labeltip2="#{msg['field.nombre']} #{p.nombre}" 
+                                             listener="#{usuarioController.handleAutocompleteOfListXhtml}"
+                                             value="#{usuarioController.usuarioSearch}"
+                                             itemLabel=" #{p.nombre}"
+                                             field="nombre"
+                                             update=" :form:dataTable"/>
+
+
+
+                </b:panelGrid>
+            </b:panel>
+            <b:panel id="dataTable" look="primary">
+                <jmoordbjsf:paginator
+                    controller="#{usuarioController}"                        
+                    rowPage="#{usuarioController.rowPage}"                   
+                    page="#{usuarioController.page}"
+                    pages="#{usuarioController.pages}"
+                    skip="ajax:usuarioController.skip()" 
+                    url = "/pages/usuario/new.xhtml"
+
+                    />
+                <b:dataTable value="#{usuarioController.usuarioDataModel}"
+                             var="item"
+                             id="dataTable2"
+                             paginated="false"
+                             onpage="console.log('page');">
+
+                    <b:dataTableColumn value="#{item.username}" label="#{msg['field.username']}"/>
+                    <b:dataTableColumn value="#{item.nombre}" label="#{msg['field.nombre']}" />
+                    <b:dataTableColumn value="#{item.unidad.idunidad}" label="#{msg['field.unidad']}" />
+
+
+
+                    <b:dataTableColumn label="">
+                        <p:panelGrid columns="2" styleClass="form-group ui-panelgrid-blank" layout="grid">
+
+                            <p:repeat value="#{item.rol}" var="car">
+                                <p:outputLabel value="#{car.idrol}"/>
+                            </p:repeat>
+                        </p:panelGrid>
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn value="#{item.unidad.activo}" label="#{msg['field.activo']}" />
+
+                    <b:dataTableColumn label="">
+
+                      
+                        
+                        <jmoordbjsf:column
+
+                            renderedEdit="#{p:ifGranted('ADMINISTRADOR')}"
+                            renderedDelete="#{p:ifGranted('ADMINISTRADOR')}"
+                            controller="#{usuarioController}"
+                            url="/pages/usuario/view.xhtml"
+                            item="#{item}"
+
+                            />
+                    </b:dataTableColumn>
+
+                </b:dataTable>
+            </b:panel>
+
+        </b:form>
+
+        <jmoordbjsf:denegado renderedcondition="#{!p:ifGranted('ADMINISTRADOR')}" />
+    </ui:define>
+</ui:composition>

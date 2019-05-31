@@ -21,6 +21,7 @@ import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
+import org.bson.Document;
 
 /**
  *
@@ -65,8 +66,9 @@ public class CustomInMemoryIdentityStore implements IdentityStore {
 
             //-----------------
             usuario.setUsername(username);
-
-            Optional<Usuario> optional = usuarioRepository.findById(usuario);
+Document doc = new Document("username",usuario.getUsername());
+            Optional<Usuario> optional = usuarioRepository.findById(doc);
+//            Optional<Usuario> optional = usuarioRepository.findById(usuario);
             if (!optional.isPresent()) {
                 JsfUtil.warningMessage(rf.getAppMessage("login.usernamenotvalid"));
                 return false;
@@ -102,6 +104,7 @@ public class CustomInMemoryIdentityStore implements IdentityStore {
                 return true;
             }
         } catch (Exception e) {
+            JsfUtil.errorDialog("isValidUser()", e.getLocalizedMessage());
         }
         return false;
     }
@@ -120,6 +123,7 @@ public class CustomInMemoryIdentityStore implements IdentityStore {
             }
             return true;
         } catch (Exception e) {
+             JsfUtil.errorDialog("isValidData()", e.getLocalizedMessage());
         }
 
         return false;
