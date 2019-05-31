@@ -19,7 +19,7 @@
             }
         </style>
 
-        <b:form id="form"  prependId="false"  rendered="#{loginController.loggedIn and applicationMenu.usuario.list}" onkeypress="if (event.keyCode == 13) {
+        <b:form id="form"  prependId="false"  rendered="#{p:ifGranted('ADMINISTRADOR')}" onkeypress="if (event.keyCode == 13) {
                     return false;
                 }">
 
@@ -75,8 +75,7 @@
 
                     <b:dataTableColumn value="#{item.username}" label="#{msg['field.username']}"/>
                     <b:dataTableColumn value="#{item.nombre}" label="#{msg['field.nombre']}" />
-                    <b:dataTableColumn value="#{item.unidad.idunidad}" label="#{msg['field.unidad']}" />
-
+                  
 
 
                     <b:dataTableColumn label="">
@@ -88,7 +87,7 @@
                         </p:panelGrid>
                     </b:dataTableColumn>
 
-                    <b:dataTableColumn value="#{item.unidad.activo}" label="#{msg['field.activo']}" />
+                    
 
                     <b:dataTableColumn label="">
 

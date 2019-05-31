@@ -171,10 +171,11 @@ public class LoginController implements Serializable, SecurityInterface {
     public String doLogin() {
         try {
             
-            List<Usuario> u = usuarioRepository.findAll();
+         List<Usuario> u = usuarioRepository.findAll();
             for(Usuario u1:u){
-                System.out.println("---> "+u1.getUsername() + "" +u1.getPassword());
-            }
+              System.out.println("---> "+u1.getUsername() + "" +u1.getPassword());
+              
+          }
 
             tokenwassend = false;
             userwasLoged = false;

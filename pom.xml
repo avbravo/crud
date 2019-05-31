@@ -31,7 +31,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>crudejb</artifactId>
-            <version>${project.version}</version>
+            <version>0.2</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

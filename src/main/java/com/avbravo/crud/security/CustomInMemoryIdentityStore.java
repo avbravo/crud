@@ -6,9 +6,8 @@
 package com.avbravo.crud.security;
 
 import com.avbravo.jmoordb.configuration.JmoordbContext;
-import com.avbravo.jmoordbutils.JsfUtil;
-
 import com.avbravo.jmoordbutils.JmoordbResourcesFiles;
+import com.avbravo.jmoordbutils.JsfUtil;
 import com.crudejb.entity.Rol;
 import com.crudejb.entity.Usuario;
 import com.crudejb.repository.UsuarioRepository;
@@ -21,12 +20,7 @@ import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
-import org.bson.Document;
 
-/**
- *
- * @author avbravo
- */
 @ApplicationScoped
 public class CustomInMemoryIdentityStore implements IdentityStore {
 
@@ -66,9 +60,8 @@ public class CustomInMemoryIdentityStore implements IdentityStore {
 
             //-----------------
             usuario.setUsername(username);
-Document doc = new Document("username",usuario.getUsername());
-            Optional<Usuario> optional = usuarioRepository.findById(doc);
-//            Optional<Usuario> optional = usuarioRepository.findById(usuario);
+
+            Optional<Usuario> optional = usuarioRepository.findById(usuario);
             if (!optional.isPresent()) {
                 JsfUtil.warningMessage(rf.getAppMessage("login.usernamenotvalid"));
                 return false;
@@ -104,7 +97,6 @@ Document doc = new Document("username",usuario.getUsername());
                 return true;
             }
         } catch (Exception e) {
-            JsfUtil.errorDialog("isValidUser()", e.getLocalizedMessage());
         }
         return false;
     }
@@ -123,7 +115,6 @@ Document doc = new Document("username",usuario.getUsername());
             }
             return true;
         } catch (Exception e) {
-             JsfUtil.errorDialog("isValidData()", e.getLocalizedMessage());
         }
 
         return false;

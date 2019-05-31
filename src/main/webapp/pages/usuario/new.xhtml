@@ -70,21 +70,7 @@
                         <p:outputLabel  value="#{msg['field.cargo']}" />
                         <jmoordbjsf:inputText value="#{usuarioController.usuario.cargo}" id="cargo"  label="#{msg['field.cargo']}" />
 
-                        <p:outputLabel  value="#{msg['field.unidad']}" />
-
-
-                        <jmoordbjsf:autocomplete converter="#{unidadConverter}"
-                                                 completeMethod="#{usuarioController.unidadServices.complete}" 
-                                                 labeltip1="#{msg['field.unidad']} #{p.idunidad}"  
-                                                 listener="#{usuarioController.handleSelect}"
-                                                 value="#{usuarioController.usuario.unidad}"
-                                                 itemLabel="#{p.idunidad}"
-                                                 dropdown="true"
-                                                 required="true"
-                                                 minQueryLength="0"
-                                                 field="idunidad"
-                                                 />
-
+                     
                         <p:outputLabel  value="#{msg['field.rol']}" />
                         <jmoordbjsf:autocomplete converter="#{rolConverter}"
                                                  completeMethod="#{usuarioController.completeFiltrado}"
