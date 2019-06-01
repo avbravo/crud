@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+     <parameter name="P_EMPRESA" class="java.lang.String"/>
+	<field name="username" class="java.lang.String"/>
+	<field name="password" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="cargo" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="rol" class="java.util.List"/>
+	<field name="activo" class="java.lang.String"/>
+
+  <background>
+          <band splitType="Stretch"/>
+ </background>
+
+  <title>
+         <band height="34" splitType="Stretch"/>
+  </title>
+<pageHeader>
+	<band height="80" splitType="Stretch">
+		<textField>
+			<reportElement x="182" y="3" width="218" height="31" />
+			<textElement>
+				<font size="14" isBold="true"/>
+			</textElement>
+			<textFieldExpression><![CDATA[$P{P_EMPRESA}]]></textFieldExpression>
+		</textField>
+		<staticText>
+			<reportElement x="182" y="40" width="197" height="31" />
+			<textElement>
+				<font size="12" isBold="true"/>
+			</textElement>
+			<text><![CDATA[usuario]]></text>
+		</staticText>
+		<staticText>
+			<reportElement x="423" y="31" width="37" height="20" />
+			<text><![CDATA[Fecha:]]></text>
+		</staticText>
+		<textField pattern="dd/MM/yyyy">
+			<reportElement x="473" y="29" width="67" height="20" />
+			<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+		</textField>
+		<staticText>
+			<reportElement x="424" y="51" width="46" height="20" />
+			<text><![CDATA[Hora:]]></text>
+		</staticText>
+		<textField pattern="h.mm a">
+			<reportElement x="473" y="51" width="74" height="20" />
+			<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+		</textField>
+	</band>
+</pageHeader>
+  <columnHeader>
+         <band height="23" splitType="Stretch"/>
+  </columnHeader>
+ <detail>
+	    <band height="112" splitType="Stretch">
+        <staticText>
+	               <reportElement y="1" x="2" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[username
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="1" x="86" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="1" x="272" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[password
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="1" x="370" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{password}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="22" x="2" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[nombre
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="22" x="86" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="22" x="272" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[cedula
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="22" x="370" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="43" x="2" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[celular
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="43" x="86" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="43" x="272" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[cargo
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="43" x="370" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="64" x="2" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[email
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="64" x="86" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+              </textField>
+        <staticText>
+	               <reportElement y="64" x="272" width="100" height="20" />
+	               <textElement>
+		               <font isBold="true"/>
+	               </textElement>
+	               <text><![CDATA[activo
+]]></text>
+           </staticText>
+     <textField >
+                   <reportElement y="64" x="370" width="100" height="20" />
+	                  <textFieldExpression><![CDATA[$F{activo}]]></textFieldExpression>
+              </textField>
+	    </band>
+ </detail>
+ <columnFooter>
+	       <band height="45" splitType="Stretch"/>
+ </columnFooter>
+ <pageFooter>
+	       <band height="54" splitType="Stretch">
+	               <staticText>
+	                       <reportElement x="438" y="11" width="35" height="20" />
+	                       <text><![CDATA[Pag.]]></text>
+	               </staticText>
+	               <textField>
+	                       <reportElement x="480" y="11" width="67" height="20" />
+	                       <textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+	               </textField>
+             </band>
+ </pageFooter>
+ <summary>
+	       <band height="42" splitType="Stretch">
+	       </band>
+ </summary>
+</jasperReport>

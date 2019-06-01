@@ -116,6 +116,7 @@ public class UsuarioController implements Serializable, IController {
             HashMap parameters = new HashMap();
             Usuario jmoordb_user = (Usuario) JmoordbContext.get("jmoordb_user");
             //    parameters.put("P_EMPRESA", jmoordb_user.getEmpresa().getDescripcion());
+            parameters.put("P_EMPRESA","MI EMPRESA");
 
             JmoordbControllerEnvironment jmc = new JmoordbControllerEnvironment.Builder()
                     .withController(this)
@@ -295,4 +296,26 @@ public class UsuarioController implements Serializable, IController {
     }
 
     // </editor-fold>
+    
+    
+     public String printSubreporte() {
+        try {
+            List<Usuario> list = new ArrayList<>();
+            list = usuarioRepository.findAll(new Document("cedula", 1));
+
+            String ruta = "/resources/reportes/usuario/usuario_master.jasper";
+            
+            HashMap parameters = new HashMap();
+            parameters.put("P_EMPRESA", "MI EMPRESA");
+            
+            //
+            String reportsDirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reportes/usuario/");
+            reportsDirPath += "/";
+            parameters.put("SUBREPORT_DIR", reportsDirPath + "/rol_subreport");
+            printer.imprimir(list, ruta, parameters);
+        } catch (Exception e) {
+            errorServices.errorMessage(nameOfClass(),nameOfMethod(), e.getLocalizedMessage());
+        }
+        return null;
+    }
 }

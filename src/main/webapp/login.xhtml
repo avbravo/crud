@@ -18,7 +18,7 @@
             }
         </style>
         <f:facet name="first">
-            <f:view locale="#{jmoordbLanguajes.locale}"></f:view>
+            <f:view locale="#{jmoordbLanguajes.locale !=null?jmoordbLanguajes.locale:'es'}"></f:view>
             <f:loadBundle basename="com.properties.messages" var="msg" />
             <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
 

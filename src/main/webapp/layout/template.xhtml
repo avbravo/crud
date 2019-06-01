@@ -9,7 +9,7 @@
       xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib">
     <h:head>
         <f:facet name="first">
-            <f:view locale="#{jmoordbLanguages.locale}"></f:view>
+            <f:view locale="#{jmoordbLanguajes.locale !=null?jmoordbLanguajes.locale:'es'}"></f:view>
             <f:loadBundle basename="com.properties.messages" var="msg" />
             <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
 
