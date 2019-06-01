@@ -102,7 +102,8 @@ public class RolController implements Serializable, IController {
              */
             HashMap parameters = new HashMap();
             Usuario jmoordb_user = (Usuario) JmoordbContext.get("jmoordb_user");
-            //    parameters.put("P_EMPRESA", jmoordb_user.getEmpresa().getDescripcion());
+//               parameters.put("P_EMPRESA", jmoordb_user.getEmpresa().getDescripcion());
+               parameters.put("P_EMPRESA", "MI EMPRESA");
 
             JmoordbControllerEnvironment jmc = new JmoordbControllerEnvironment.Builder()
                     .withController(this)
