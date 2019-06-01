@@ -297,13 +297,14 @@ public class UsuarioController implements Serializable, IController {
 
     // </editor-fold>
     
-    
+      // <editor-fold defaultstate="collapsed" desc="String printSubreporte()">
      public String printSubreporte() {
         try {
             List<Usuario> list = new ArrayList<>();
             list = usuarioRepository.findAll(new Document("cedula", 1));
 
-            String ruta = "/resources/reportes/usuario/usuario_master.jasper";
+           String ruta = "/resources/reportes/usuario/usuario_master.jasper";
+        //    String ruta = "/resources/reportes/usuario/all.jasper";
             
             HashMap parameters = new HashMap();
             parameters.put("P_EMPRESA", "MI EMPRESA");
@@ -311,11 +312,11 @@ public class UsuarioController implements Serializable, IController {
             //
             String reportsDirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reportes/usuario/");
             reportsDirPath += "/";
-            parameters.put("SUBREPORT_DIR", reportsDirPath + "/rol_subreport");
+            parameters.put("SUBREPORT_DIR", reportsDirPath + "/rol_subreport2");
             printer.imprimir(list, ruta, parameters);
         } catch (Exception e) {
             errorServices.errorMessage(nameOfClass(),nameOfMethod(), e.getLocalizedMessage());
         }
         return null;
-    }
+    }   // </editor-fold>
 }
