@@ -136,6 +136,8 @@ public class LoginController implements Serializable, SecurityInterface {
         userwasLoged = false;
         tokenwassend = false;
         configuracion = new Configuracion();
+        String demo= JsfUtil.encriptar("demo");
+        System.out.println("demo "+demo);
 
         //Configuracion de la base de datos
         JmoordbConnection jmc = new JmoordbConnection.Builder()
