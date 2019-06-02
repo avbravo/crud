@@ -18,44 +18,76 @@
             }
         </style>
         <f:facet name="first">
-            <f:view locale="#{jmoordbLanguajes.locale !=null?jmoordbLanguajes.locale:'es'}"></f:view>
-            <f:view locale="es"></f:view>
+            <f:view locale="#{LocaleBean.locale}"></f:view>
+
+
             <f:loadBundle basename="com.properties.messages" var="msg" />
             <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
 
         </f:facet>
+
+        <jmoordbjsf:metatemplate/>
+        <jmoordbjsf:csstemplate/>
     </h:head>
     <h:body style="padding-top: 60px; background-color: lightslategray">
 
         <b:container fluid="true"> 
             <h:form styleClass="form-signin" prependId="false" id="form">
                 <p:messages id="growl" closable="true"  />
-                <h2 class="form-signin-heading"><p:outputLabel value="#{msg['application.title']}" style="color: white"/></h2>
-                
+                <h2 class="form-signin-heading"><p:outputLabel value="Appliction" style="color: white"/></h2>
+
+                <b:panel title="#{app['login.title']}" look="primary" collapsed="false" >
+                    <b:row>
+                        <b:column medium-screen="3">
+                      <h:outputText value="#{cc.attrs.labelusername}"  />
+                        </b:column>
+                        <b:column medium-screen="9">
+                            <p:inputText id="username1" value="#{loginController.username}" placeholder="username" >
+
+                            </p:inputText>
+                        </b:column>
+
+                    </b:row>
+                    <b:row tooltip="#{app['tooltip.password']}">
+                        <b:column medium-screen="3">
+                            <h:outputText value="#{app['login.password']}" />
+                        </b:column>
+                        <b:column medium-screen="9">
+                            <p:inputText id="password" value="#{loginController.password}"  placeholder="#{app['login.password']}" type="password">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key" />
+                                </f:facet>
+                            </p:inputText>
+                        </b:column>
+
+                    </b:row>
+
+                </b:panel>
+
                 <jmoordbjsf:login
-                   
+
                     id="username"
                     fieldusername="#{loginController.username}"
                     labelusername="#{app['login.username']}"
                     fieldpassword="#{loginController.password}"
                     dologin="#{loginController.doLogin()}"
-                    
-                    showone="true"
+
+                    showone="false"
                     idone="rol"
-                  
+
                     requiredMessageone="#{msg['field.idrol']}"                    
                     selectItemsLabelone="#{item.idrol}"
                     selectItemsValueone="#{loginController.rolServices.rolList}"
                     valueone="#{loginController.rol}"
                     />
-                
-                
-                
+
+
+
 
 
 
                 <p:outputLabel value="#{msg['application.version']}" style="color: white"/>
-               
+
 
             </h:form>
         </b:container>

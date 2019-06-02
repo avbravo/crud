@@ -18,6 +18,7 @@ import com.avbravo.jmoordb.mongodb.history.entity.Configuracion;
 import com.avbravo.jmoordb.services.AccessInfoServices;
 import com.avbravo.jmoordb.services.RevisionHistoryServices;
 import com.avbravo.jmoordbsecurity.SecurityInterface;
+import com.avbravo.jmoordbutils.JmoordbLanguages;
 import com.avbravo.jmoordbutils.JsfUtil;
 import com.avbravo.jmoordbutils.email.ManagerEmail;
 import com.avbravo.jmoordbutils.JmoordbResourcesFiles;
@@ -61,6 +62,8 @@ public class LoginController implements Serializable, SecurityInterface {
     private ExternalContext externalContext;
     @Inject
     private FacesContext facesContext;
+//    @Inject
+//JmoordbLanguages jmoordbLanguages;
 
     //Atributos para la interface IController
     @Inject
@@ -131,6 +134,7 @@ public class LoginController implements Serializable, SecurityInterface {
 // <editor-fold defaultstate="collapsed" desc="init">
     @PostConstruct
     public void init() {
+     //   jmoordbLanguages.spanishAction();
         loggedIn = false;
         recoverSession = false;
         userwasLoged = false;
@@ -349,7 +353,7 @@ public class LoginController implements Serializable, SecurityInterface {
 // <editor-fold defaultstate="collapsed" desc="doLogout">
 
     public String doLogout() {
-        return logout("/transporte/faces/login.xhtml?faces-redirect=true");
+        return logout("/crud/faces/login.xhtml?faces-redirect=true");
     }
 
     // </editor-fold>

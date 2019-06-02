@@ -33,6 +33,7 @@
             <artifactId>crudejb</artifactId>
             <version>0.2</version>
         </dependency>
+       
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -47,11 +48,7 @@
             <type>pom</type>
         </dependency>
         
-         <dependency>
-            <groupId>com.github.avbravo</groupId>
-            <artifactId>jmoordbjsf</artifactId>
-            <version>0.9</version>
-        </dependency>
+        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -90,6 +87,12 @@
             <groupId>com.github.avbravo</groupId>
             <artifactId>jmoordbsecurity</artifactId>
             <version>0.2</version>
+        </dependency>
+        
+       <dependency>
+            <groupId>com.github.avbravo</groupId>
+            <artifactId>jmoordbjsf</artifactId>
+            <version>0.10</version>
         </dependency>
     </dependencies>
 
