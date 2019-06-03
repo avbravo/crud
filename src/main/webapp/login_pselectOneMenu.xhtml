@@ -6,7 +6,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib">
+      xmlns:jmoordbjsf="http://jmoordbjsf.com/taglib"
+      xmlns:extensions="http://xmlns.jcp.org/jsf/composite/extensions">
     <h:head> 
         <title>#{msg['application.title']}</title>
         <meta name="author" content="Aristides Villarreal"></meta>
@@ -19,46 +20,50 @@
         </style>
         <f:facet name="first">
             <f:view locale="#{jmoordbLanguajes.locale !=null?jmoordbLanguajes.locale:'es'}"></f:view>
-           
+            <f:view locale="es"></f:view>
             <f:loadBundle basename="com.properties.messages" var="msg" />
             <f:loadBundle basename="com.jmoordbutils.properties.application" var="app" />
 
         </f:facet>
- 
+<!--        <jmoordbjsf:metatemplate/>
+        <jmoordbjsf:csstemplate/>-->
     </h:head>
     <h:body style="padding-top: 60px; background-color: lightslategray">
-        <b:button value="B7"/>
+        <!--<jmoordbjsf:jstemplate/>-->
         <b:container fluid="true"> 
             <h:form styleClass="form-signin" prependId="false" id="form">
                 <p:messages id="growl" closable="true"  />
                 <h2 class="form-signin-heading"><p:outputLabel value="#{msg['application.title']}" style="color: white"/></h2>
-                
-                <p:inputText value=""/>
-                
-               <jmoordbjsf:login
 
+
+               <extensions:login
+                   
                     id="username"
                     fieldusername="#{loginController.username}"
                     labelusername="#{app['login.username']}"
                     fieldpassword="#{loginController.password}"
                     dologin="#{loginController.doLogin()}"
-
-                    showone="false"
-                    idone="rol"
-
-                    requiredMessageone="#{msg['field.idrol']}"                    
-                    selectItemsLabelone="#{item.idrol}"
-                    selectItemsValueone="#{loginController.rolServices.rolList}"
+                    update=":form:growl"
+                    
+                    showone="true"
+                    idone="rol"                  
+                    requiredMessageOne="#{msg['field.idrol']}"                    
                     valueone="#{loginController.rol}"
+                    converterOne="#{rolConverter}"
+                    completeMethodOne="#{loginController.rolServices.complete}"
+                   itemLabelOne=" #{p.rol}"
+                    labeltip1One="#{msg['field.rol']} #{p.rol}" 
+                    fieldOne="rol"
                     />
                 
-                
-                
+
+
+
 
 
 
                 <p:outputLabel value="#{msg['application.version']}" style="color: white"/>
-               
+
 
             </h:form>
         </b:container>
