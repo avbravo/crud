@@ -27,14 +27,13 @@
  
     </h:head>
     <h:body style="padding-top: 60px; background-color: lightslategray">
-        <b:button value="B7"/>
+       
         <b:container fluid="true"> 
             <h:form styleClass="form-signin" prependId="false" id="form">
                 <p:messages id="growl" closable="true"  />
                 <h2 class="form-signin-heading"><p:outputLabel value="#{msg['application.title']}" style="color: white"/></h2>
                 
-                <p:inputText value=""/>
-                
+    
                <jmoordbjsf:login
 
                     id="username"
@@ -43,7 +42,7 @@
                     fieldpassword="#{loginController.password}"
                     dologin="#{loginController.doLogin()}"
 
-                    showone="false"
+                    showone="true"
                     idone="rol"
 
                     requiredMessageone="#{msg['field.idrol']}"                    
