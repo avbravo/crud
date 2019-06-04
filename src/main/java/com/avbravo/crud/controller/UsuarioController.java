@@ -309,13 +309,10 @@ public class UsuarioController implements Serializable, IController {
             HashMap parameters = new HashMap();
             parameters.put("P_EMPRESA", "MI EMPRESA");
             
-            //
-//            String reportsDirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reportes/usuario/");
-//            reportsDirPath += "/";
-//            parameters.put("SUBREPORT_DIR", reportsDirPath + "/rol_subreport2");
+            
             String reportsDirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/reportes/usuario");
             reportsDirPath += "/";
-            parameters.put("SUBREPORT_DIR", reportsDirPath + "rol_subreport");
+            parameters.put("SUBREPORT_DIR", reportsDirPath + "rol_subreport.jasper");
             printer.imprimir(list, ruta, parameters);
         } catch (Exception e) {
             errorServices.errorMessage(nameOfClass(),nameOfMethod(), e.getLocalizedMessage());
