@@ -118,7 +118,7 @@ public class RolController implements Serializable, IController {
                     .withPathReportAll("/resources/reportes/rol/all.jasper")
                     .withparameters(parameters)
                     .withResetInSave(true)
-                 .withAction("rol")
+                 .withAction("golist")
                     .build();
 
             start();
