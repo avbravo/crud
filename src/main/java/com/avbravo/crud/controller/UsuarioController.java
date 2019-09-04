@@ -131,7 +131,7 @@ public class UsuarioController implements Serializable, IController {
                     .withPathReportAll("/resources/reportes/usuario/all.jasper")
                     .withparameters(parameters)
                      .withResetInSave(true)
-                    .withAction("usuario")
+                    .withAction("golist")
                     .build();
 
             start();
@@ -171,8 +171,8 @@ public class UsuarioController implements Serializable, IController {
                     break;
 
                 case "username":
-                    if (JmoordbContext.get("_fieldsearchusuario") != null) {
-                        usuarioSearch.setUsername(JmoordbContext.get("_fieldsearchusuario").toString());
+                    if (getValueSearch() != null) {
+                        usuarioSearch.setUsername(getValueSearch().toString());
                         doc = new Document("username", usuarioSearch.getUsername());
                         usuarioList = usuarioRepository.findPagination(doc, page, rowPage, new Document("idusuario", -1));
                     } else {
@@ -181,8 +181,8 @@ public class UsuarioController implements Serializable, IController {
 
                     break;
                 case "activo":
-                    if (JmoordbContext.get("_fieldsearchusuario") != null) {
-                        usuarioSearch.setActivo(JmoordbContext.get("_fieldsearchusuario").toString());
+                    if (getValueSearch() != null) {
+                        usuarioSearch.setActivo(getValueSearch().toString());
                         doc = new Document("activo", usuarioSearch.getActivo());
                         usuarioList = usuarioRepository.findPagination(doc, page, rowPage, new Document("idusuario", -1));
                     } else {
